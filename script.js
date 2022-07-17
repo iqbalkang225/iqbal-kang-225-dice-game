@@ -67,18 +67,26 @@ const currentScore1El = document.querySelector('.current-player-score-1')
 const currentScore2El = document.querySelector('.current-player-score-2')
 const btnRoll = document.querySelector('.roll-dice');
 const btnHold = document.querySelector('.hold-game');
+const btnReset = document.querySelector('.new-game');
 const dices = document.querySelectorAll('.dice');
 
+let gameOver = false;
 let currentScore = 0;
 let activePlayer = 1;
-const totalScores = [0, 0];
+let totalScores = [null, 0, 0];
 
 // Getting Player's names from user and setting up the initial values
-// const playerNames = [prompt(`Enter first Player's name:`), prompt(`Enter first Player's name:`)];
-const playerNames = ['iqbal kang', 'harjeet kang'];
+let playerNames = [null, prompt(`Enter first Player's name:`), prompt(`Enter second Player's name:`)];
+// const playerNames = [null, 'iqbal gill', 'gill kang'];
 
+
+// Setting players Names
 for(let i = 1; i <= players.length; i++) {
-  document.getElementById(`player-name-${i}`).textContent = playerNames[i - 1].slice(0, 1).toUpperCase() + playerNames[i - 1].slice(1);
+  playerNames[i] = playerNames[i].slice(0, 1).toUpperCase() + playerNames[i].slice(1);
+
+  document.querySelector(`#player-name-${i}`).textContent = 
+  playerNames[i];
+  document.querySelector(`.current-player-name-${i}`).textContent = playerNames[i];
 }
 
 // Display Dice Function
@@ -100,23 +108,66 @@ const switchPlayer = function () {
 
 // Rolling Dice
 btnRoll.addEventListener('click', () => {
-  // 1. Generating Dice Number
-  let diceNumber = Math.trunc((Math.random() * 6) + 1);
-  displayDice(diceNumber);
+  if(!gameOver) {
+    // 1. Generating Dice Number
+    let diceNumber = Math.trunc((Math.random() * 6) + 1);
+    displayDice(diceNumber);
 
-  // 2. Current score of active player
-  currentScore += diceNumber;
-  // document.querySelector(`.current-player-score-${activePlayer}`).textContent = currentScore;
+    // 2. Current score of active player
+    currentScore += diceNumber;
 
-  // 3. Switiching active player
-  if(diceNumber !== 1) {
-    document.querySelector(`.current-player-score-${activePlayer}`).textContent = currentScore;
-  } else {
-    switchPlayer();
+    // 3. Switiching active player
+    if(diceNumber !== 1) {
+      document.querySelector(`.current-player-score-${activePlayer}`).textContent = currentScore;
+    } else {
+      switchPlayer();
+    }
   }
 });
 
+// Holding Score and Switching player
 btnHold.addEventListener('click', () => {
-  switchPlayer();
+  if(!gameOver) {
+    totalScores[activePlayer] += currentScore;
+    document.querySelector(`.total-score-${activePlayer}`).textContent = totalScores[activePlayer];
+    
+    if(totalScores[activePlayer] < 50) {
+      switchPlayer();
+    }  else {
+      document.querySelector(`.current-player-${activePlayer}`).classList.add('winner');
+      document.querySelector(`.current-player-name-${activePlayer}`).textContent = `${playerNames[activePlayer]} Wins! 🏆`
+      gameOver = true;
+    }
+  }
+});
+
+// Resetting Game
+btnReset.addEventListener('click', () => {
+  gameOver = false;
+  currentScore = 0;
+  activePlayer = 1;
+  totalScores = [null, 0, 0];
+
+  document.querySelector(`.current-player-${activePlayer}`).classList.remove('winner');
+  // document.querySelector(`.current-player-name-${activePlayer}`).textContent = `${playerNames[activePlayer]} Wins! 🏆`
+ 
+
+  for(let i = 1; i <= players.length; i++) {
+    document.querySelector(`#player-name-${i}`).textContent = 
+    `Player ${i}`;
+    document.querySelector(`.current-player-name-${i}`).textContent = `Player-${i}`;
+    document.querySelector(`.total-score-${i}`).textContent = 0;
+    document.querySelector(`.current-player-score-${i}`).textContent = 0;
+    document.querySelector(`.current-player-name-${i}`).textContent = `Enter Players`;
+  }
+
+  playerNames = [null, prompt(`put first Player's name:`), prompt(`puts second Player's name:`)];
+
+  for(let i = 1; i <= players.length; i++) {
+    playerNames[i] = playerNames[i].slice(0, 1).toUpperCase() + playerNames[i].slice(1);
   
+    document.querySelector(`#player-name-${i}`).textContent = 
+    playerNames[i];
+    document.querySelector(`.current-player-name-${i}`).textContent = playerNames[i];
+  }
 });

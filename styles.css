@@ -121,6 +121,10 @@ a{
   backface-visibility: hidden;
 }
 
+.current-player.winner{
+  background-color: #fff;
+}
+
 .current-player-1.flip{
   transform: rotateY(180deg);
 }
