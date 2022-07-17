@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="container">
+    <div class="upper-container">
+      <a href="#" class="game-title">
+        <h1> <span class="game-logo">100</span>First</h1>
+      </a>
+      
+      <div class="dice-container">
+        <div class="dice-1 dice"> <i class="fa-solid fa-dice-one"></i> </div>
+        <div class="dice-2 dice"> <i class="fa-solid fa-dice-two"></i> </div>
+        <div class="dice-3 dice"> <i class="fa-solid fa-dice-three"></i> </div>
+        <div class="dice-4 dice"> <i class="fa-solid fa-dice-four"></i> </div>
+        <div class="dice-5 dice"> <i class="fa-solid fa-dice-five"></i> </div>
+        <div class="dice-6 dice"> <i class="fa-solid fa-dice-six"></i> </div>
+      </div>
+
+      <a href="#" class="game-title">
+        <h1> <span class="game-logo">100</span>First</h1>
+      </a>
+    </div>
+
+
+    <div class="game-container">
+
+      <!-- Player 1 info -->
+      <div class="player">
+        <h2 class="player-name" id="player-name-1">
+          Player 1
+        </h2>
+        <p class="total-text">Total Score</p>
+        <p class="total-score total-score-1">0</p>
+        <button class="btn new-game">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          New Game</button>
+      </div>
+
+      <div class="middle-container">
+        <div class="current-player-container">
+          <!-- Current player 1 -->
+          <div class="current-player current-player-1">
+            <h2 class="current-player-name current-player-name-1">
+              Iqbal Kang
+            </h2>
+            <p>Current Score</p>
+            <p class="current-player-score current-player-score-1">0</p>  
+          </div> 
+          <!-- Current player 2 -->
+          <div class="current-player current-player-2">
+            <h2 class="current-player-name current-player-name-2">
+              Jeeto Kang
+            </h2>
+            <p>Current Score</p>
+            <p class="current-player-score current-player-score-2">0</p>  
+          </div> 
+        </div>
+
+        <button class="btn roll-dice">
+          <i class="fa-solid fa-dice-d6"></i>
+          Roll Dice</button>
+      </div>
+
+      <!-- Player 2 info -->
+      <div class="player">
+        <h2 class="player-name" id="player-name-2">
+          Player 2
+        </h2>
+        <p class="total-text">Total Score</p>
+        <p class="total-score total-score-2">0</p>
+        <button class="btn hold-game">
+          <i class="fa-solid fa-cloud-arrow-down"></i>
+          Hold Game</button>
+      </div>
+    </div>
+
+  </main>
+  
+  <script src="./script.js"></script>
+</body>
+</html>
